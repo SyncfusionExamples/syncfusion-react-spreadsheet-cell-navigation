@@ -1,6 +1,6 @@
 # Search Across a Workbook and Navigate to a Worksheet and Cell in React Spreadsheet
 
-This sample demonstrates how to implement **workbook-wide search** in the Syncfusion React Spreadsheet component using the `findAll` and `goTo` APIs.
+This sample demonstrates how to implement **workbook-wide search and navigation** in the Syncfusion React Spreadsheet component using the `findAll` and `goTo` APIs.
 
 ## Features
 
