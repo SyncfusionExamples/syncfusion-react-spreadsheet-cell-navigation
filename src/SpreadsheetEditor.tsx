@@ -8,19 +8,16 @@ const SpreadsheetEditor = () => {
   const sidePanelRef = useRef<{ findRecord: () => void }>(null);
 
   const onCreated = async () => {
-    spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Employees!A1:I1');
-    spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Sales!A1:J1');
-    spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Inventory!A1:J1');
-    const sheetNames = ['Employees', 'Sales', 'Inventory'];
-    for (const sheet of sheetNames) {
-      spreadsheetRef.current?.goTo(`${sheet}!A1`);
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    }
-    spreadsheetRef.current?.goTo('Employees!A1');
-    setTimeout(() => {
-      sidePanelRef.current?.findRecord();
-    }, 500);
-  };
+  spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Employees!A1:I1');
+  spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Sales!A1:J1');
+  spreadsheetRef.current?.cellFormat({ fontWeight: 'bold' }, 'Inventory!A1:J1');
+  spreadsheetRef.current?.updateRange({ dataSource: Employees, startCell: 'A1' }, 0);
+  spreadsheetRef.current?.updateRange({ dataSource: Sales, startCell: 'A1' }, 1);
+  spreadsheetRef.current?.updateRange({ dataSource: Inventory, startCell: 'A1' }, 2);
+  setTimeout(() => {
+    sidePanelRef.current?.findRecord();
+  }, 500);
+};
   return (
     <div className="spreadsheet-layout">
       <div className="spreadsheet-viewer-panel">
@@ -78,7 +75,7 @@ const SpreadsheetEditor = () => {
                 <ColumnDirective width={100}></ColumnDirective>
                 <ColumnDirective width={75}></ColumnDirective>
                 <ColumnDirective width={110}></ColumnDirective>
-                <ColumnDirective width={75}></ColumnDirective>
+                <ColumnDirective width={90}></ColumnDirective>
               </ColumnsDirective>
             </SheetDirective>
           </SheetsDirective>
